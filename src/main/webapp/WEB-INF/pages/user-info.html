@@ -6,12 +6,14 @@
 
 <hr>
 
-<form action="/saveUser" method="post">
-  <input type="hidden" name="id" th:value="${user.id}">
-  Name: <input type="text" name="name" th:value="${user.name}"><br><br>
-  Age: <input type="number" name="age" th:value="${user.age}"><br><br>
-  Email: <input type="email" name="email" th:value="${user.email}"><br><br>
-  <input type="submit" value="Ok">
+<form action="/user" th:method="${user.id != null}? 'put' : 'post'">
+<!--  <form action="/user" th:method="patch">-->
+    <!--    <input type="hidden" name="_method" value="PUT"/>-->
+    <input type="hidden" name="id" th:value="${user.id}">
+    Name: <input type="text" name="name" th:value="${user.name}"><br><br>
+    Age: <input type="number" name="age" th:value="${user.age}"><br><br>
+    Email: <input type="email" name="email" th:value="${user.email}"><br><br>
+    <input type="submit" value="Ok">
 </form>
 
 </body>

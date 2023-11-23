@@ -19,27 +19,33 @@ public class MainController {
         return "users";
     }
 
-    @GetMapping("/addNewUser")
-    public String addNewUser(Model model) {
+    @GetMapping("/user")
+    public String showUserForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "user-info";
     }
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+    @PostMapping("/user")
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
         return "redirect:/";
     }
 
-    @GetMapping("/updateUser")
-    public String updateUser(@RequestParam("id") Long id, Model model) {
+    @PutMapping("/user")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.editUser(user);
+        return "redirect:/";
+    }
+
+    @GetMapping("/user/{id}")
+    public String updateUser(@PathVariable("id") Long id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         return "user-info";
     }
 
-    @RequestMapping("/deleteUser")
+    @DeleteMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/";

@@ -20,12 +20,12 @@
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
             <td>
-                <a th:href="@{/updateUser(id=${user.id})}">
+                <a th:href="@{/user/{id}(id=${user.id})}">
                     <button type="button">Update</button>
                 </a>
-                <a th:href="@{/deleteUser(id=${user.id})}">
-                    <button type="button">Delete</button>
-                </a>
+                <form th:action="@{/deleteUser(id=${user.id})}" th:method="'delete'">
+                    <input type="submit" value="Delete"/>
+                </form>
             </td>
         </tr>
     </th:block>
@@ -33,7 +33,7 @@
 
 <br>
 
-<input type="button" value="Add" onclick="window.location.href='/addNewUser'">
+<input type="button" value="Add" onclick="window.location.href='/user'">
 
 </body>
 </html>
